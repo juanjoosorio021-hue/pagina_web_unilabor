@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Catálogo | UNILABOR Dotaciones - Seguridad Industrial</title>
   <meta name="description" content="Catálogo de EPP y dotaciones industriales: cascos, guantes, gafas, calzado, señalización vial y más. Florencia, Caquetá."/>
-  <link rel="stylesheet" href="css/custom.css"/>
+  <link rel="stylesheet" href="custom.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>tailwind.config = { theme: { extend: { colors: { primary: '#1F3864', accent: '#FFD966' } } } }</script>
@@ -16,7 +16,7 @@
 <nav class="bg-primary sticky top-0 z-50 shadow-lg">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2">
-      <img src="assets/logo.jpg" alt="Unilabor Dotaciones" class="h-14 w-14 rounded-full object-cover border-2 border-accent"/>
+      <img src="logo.jpg" alt="Unilabor Dotaciones" class="h-14 w-14 rounded-full object-cover border-2 border-accent"/>
     </a>
     <div class="hidden md:flex items-center gap-6 text-white text-sm font-medium">
       <a href="index.html" class="hover:text-accent transition">Inicio</a>
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => { renderProductos(); actuali
 const urlCat = new URLSearchParams(location.search).get('cat');
 if (urlCat) { catActiva = urlCat; }
 </script>
-<script src="js/carrito.js"></script>
+<script src="carrito.js"></script>
 
 <footer class="bg-gray-900 text-gray-400 py-6 text-center text-xs">
   <div class="flex justify-center gap-5 mb-3">
