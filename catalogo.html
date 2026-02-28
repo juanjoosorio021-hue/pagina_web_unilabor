@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo | UNILABOR Dotaciones - Seguridad Industrial</title>
+  <meta name="description" content="Catálogo de EPP y dotaciones industriales: cascos, guantes, gafas, calzado, señalización vial y más. Florencia, Caquetá."/>
+  <link rel="stylesheet" href="css/custom.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { primary: '#1F3864', accent: '#FFD966' } } } }</script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- NAVBAR -->
+<nav class="bg-primary sticky top-0 z-50 shadow-lg">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2">
+      <svg class="w-9 h-9" viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="20" fill="#FFD966"/>
+        <path d="M8 24 Q20 10 32 24" stroke="#1F3864" stroke-width="3" fill="none"/>
+        <rect x="10" y="24" width="20" height="5" rx="2" fill="#1F3864"/>
+      </svg>
+      <span class="text-white font-bold text-lg leading-tight">UNILABOR<br/><span class="text-accent text-xs font-normal">Dotaciones</span></span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-white text-sm font-medium">
+      <a href="index.html" class="hover:text-accent transition">Inicio</a>
+      <a href="catalogo.html" class="text-accent">Catálogo</a>
+      <a href="contacto.html" class="hover:text-accent transition">Contacto</a>
+    </div>
+    <button onclick="abrirCarrito()" class="relative">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+      </svg>
+      <span class="carrito-count badge absolute -top-1 -right-1 bg-accent text-primary rounded-full font-bold items-center justify-center hidden">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- FILTROS -->
+<div class="bg-white border-b border-gray-200 sticky top-16 z-40">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide text-sm">
+    <button onclick="filtrar('todos')" class="filtro-btn active whitespace-nowrap px-4 py-1.5 rounded-full border border-primary bg-primary text-white font-medium">Todos</button>
+    <button onclick="filtrar('cascos')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">⛑️ Cascos</button>
+    <button onclick="filtrar('guantes')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">🧤 Guantes</button>
+    <button onclick="filtrar('gafas')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">🥽 Gafas</button>
+    <button onclick="filtrar('auditiva')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">🔇 Auditiva</button>
+    <button onclick="filtrar('calzado')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">🥾 Calzado</button>
+    <button onclick="filtrar('ropa')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">🦺 Ropa</button>
+    <button onclick="filtrar('señalizacion')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">🚧 Señalización</button>
+    <button onclick="filtrar('barreras')" class="filtro-btn whitespace-nowrap px-4 py-1.5 rounded-full border border-gray-300 text-gray-600 font-medium hover:border-primary hover:text-primary">🔶 Barreras</button>
+  </div>
+</div>
+
+<!-- GRID PRODUCTOS -->
+<main class="max-w-6xl mx-auto px-4 py-8">
+  <div id="productos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+</main>
+
+<!-- PANEL CARRITO -->
+<div id="carrito-overlay" onclick="cerrarCarrito()" class="fixed inset-0 bg-black/40 z-50" style="display:none"></div>
+<div id="carrito-panel" class="carrito-cerrado fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 flex flex-col">
+  <div class="flex items-center justify-between p-4 border-b border-gray-100">
+    <h3 class="font-bold text-primary text-lg">Tu Cotización</h3>
+    <button onclick="cerrarCarrito()" class="text-gray-400 hover:text-gray-700 text-xl font-bold">✕</button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-4">
+    <p id="carrito-empty" class="text-center text-gray-400 text-sm py-10">No hay productos aún.<br/>¡Agrega algo del catálogo!</p>
+    <div id="carrito-lista"></div>
+  </div>
+  <div id="carrito-footer" class="p-4 border-t border-gray-100 flex flex-col gap-2" style="display:none">
+    <button onclick="solicitarWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl text-sm transition">
+      💬 Solicitar Cotización por WhatsApp
+    </button>
+    <button onclick="descargarPDF()" class="w-full bg-primary hover:bg-blue-900 text-white font-bold py-3 rounded-xl text-sm transition">
+      📄 Descargar Resumen PDF
+    </button>
+    <button onclick="carrito=[];guardar();" class="w-full text-red-400 hover:text-red-600 text-xs py-1 transition">
+      Vaciar carrito
+    </button>
+  </div>
+</div>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/573106283106" target="_blank" class="whatsapp-float bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-600 transition">
+  <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const PRODUCTOS = [
+  { id:'p1',  cat:'cascos',       emoji:'⛑️', nombre:'Casco Amarillo INSAFE',                precio:25000  },
+  { id:'p2',  cat:'cascos',       emoji:'⛑️', nombre:'Casco Blanco con Rachet',              precio:32000  },
+  { id:'p3',  cat:'guantes',      emoji:'🧤', nombre:'Guante Poliuretano (Par)',              precio:55000  },
+  { id:'p4',  cat:'guantes',      emoji:'🧤', nombre:'Guante Anticorte Negro (Par)',          precio:14000  },
+  { id:'p5',  cat:'guantes',      emoji:'🧤', nombre:'Guante de Cuero Reforzado (Par)',       precio:18000  },
+  { id:'p6',  cat:'gafas',        emoji:'🥽', nombre:'Gafa Oscura SPAY',                     precio:6000   },
+  { id:'p7',  cat:'gafas',        emoji:'🥽', nombre:'Gafa Transparente SPAY',               precio:6000   },
+  { id:'p8',  cat:'auditiva',     emoji:'🔇', nombre:'Tapaoído Silicona (Inserción)',         precio:3000   },
+  { id:'p9',  cat:'auditiva',     emoji:'🔇', nombre:'Orejera Ajustable NRR 25dB',           precio:45000  },
+  { id:'p10', cat:'calzado',      emoji:'🥾', nombre:'Bota Con Puntera 820',                 precio:80000  },
+  { id:'p11', cat:'calzado',      emoji:'🥾', nombre:'Bota Dieléctrica Talla 40',            precio:95000  },
+  { id:'p12', cat:'ropa',         emoji:'🦺', nombre:'Chaleco Reflectivo',                   precio:22000  },
+  { id:'p13', cat:'ropa',         emoji:'👕', nombre:'Buso Franela Manga Larga',             precio:25000  },
+  { id:'p14', cat:'ropa',         emoji:'👖', nombre:'Pantalón Bluyin Rígido Hombre',        precio:38000  },
+  { id:'p15', cat:'señalizacion', emoji:'🚧', nombre:'Señal Preventiva Metálica (Trípode)',  precio:160000 },
+  { id:'p16', cat:'señalizacion', emoji:'🛑', nombre:'Paleta Control Pare - Siga',           precio:25000  },
+  { id:'p17', cat:'señalizacion', emoji:'🚦', nombre:'Señal Reglamentaria Metálica (Trípode)',precio:160000},
+  { id:'p18', cat:'barreras',     emoji:'🔶', nombre:'Cono Señalización 70cm',               precio:49000  },
+  { id:'p19', cat:'barreras',     emoji:'🔶', nombre:'Cono Señalización 90cm',               precio:92000  },
+  { id:'p20', cat:'barreras',     emoji:'🔷', nombre:'Delineador Tubular Vertical',          precio:53000  },
+  { id:'p21', cat:'barreras',     emoji:'🚧', nombre:'Barrera Plástica Tipo Maletín 2m',     precio:438000 },
+];
+
+let catActiva = 'todos';
+
+function filtrar(cat) {
+  catActiva = cat;
+  document.querySelectorAll('.filtro-btn').forEach(b => {
+    b.classList.remove('bg-primary','text-white','border-primary');
+    b.classList.add('border-gray-300','text-gray-600');
+  });
+  event.currentTarget.classList.add('bg-primary','text-white','border-primary');
+  event.currentTarget.classList.remove('border-gray-300','text-gray-600');
+  renderProductos();
+}
+
+function renderProductos() {
+  const lista = catActiva === 'todos' ? PRODUCTOS : PRODUCTOS.filter(p => p.cat === catActiva);
+  document.getElementById('productos-grid').innerHTML = lista.map(p => `
+    <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+      <div class="bg-blue-50 h-32 flex items-center justify-center text-5xl">${p.emoji}</div>
+      <div class="p-3">
+        <p class="font-semibold text-primary text-sm leading-tight mb-1">${p.nombre}</p>
+        <p class="text-xs text-gray-400 mb-3">$ ${p.precio.toLocaleString('es-CO')} c/u</p>
+        <button onclick="agregarProducto('${p.id}','${p.nombre.replace(/'/g,"\\'")}',${p.precio})"
+          class="w-full bg-primary hover:bg-blue-900 text-white text-xs font-bold py-2 rounded-xl transition">
+          + Agregar
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => { renderProductos(); actualizarUI(); });
+
+// Leer cat desde URL
+const urlCat = new URLSearchParams(location.search).get('cat');
+if (urlCat) { catActiva = urlCat; }
+</script>
+<script src="js/carrito.js"></script>
+</body>
+</html>
