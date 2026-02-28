@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { font-family: 'Inter', sans-serif; }
+
+.hero-bg {
+  background: linear-gradient(135deg, #1F3864 0%, #2d5290 100%);
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+  50%      { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+}
+
+#carrito-panel {
+  transition: transform 0.3s ease;
+}
+.carrito-cerrado { transform: translateX(100%); }
+.carrito-abierto  { transform: translateX(0); }
+
+.badge {
+  min-width: 18px;
+  height: 18px;
+  font-size: 11px;
+}
