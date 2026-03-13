@@ -9,17 +9,121 @@
   <meta property="og:title" content="UNILABOR Dotaciones - Seguridad Industrial"/>
   <meta property="og:description" content="20 años protegiendo a los trabajadores de Colombia. EPP de calidad en Florencia, Caquetá."/>
   <meta property="og:type" content="website"/>
-  <link rel="stylesheet" href="custom.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: { extend: { colors: { primary: '#1F3864', accent: '#FFD966' } } }
     }
   </script>
+  <style>
+    body { font-family: 'Barlow', sans-serif; }
+    h1, h2, h3, .display { font-family: 'Barlow Condensed', sans-serif; }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #0f2040 0%, #1F3864 55%, #2a4a7f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD966' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-stripe {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: repeating-linear-gradient(90deg, #FFD966 0px, #FFD966 30px, #1F3864 30px, #1F3864 60px);
+    }
+
+    .card-hover { transition: transform 0.25s, box-shadow 0.25s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(31,56,100,0.13); }
+
+    .product-img {
+      width: 100%; height: 200px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .badge-ref {
+      background: #1F3864;
+      color: #FFD966;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .quienes-bg {
+      background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+      border-left: 5px solid #FFD966;
+    }
+
+    .stat-box {
+      border-top: 3px solid #FFD966;
+    }
+
+    .category-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(31,56,100,0.15);
+      border-color: #FFD966;
+    }
+    .category-img {
+      width: 100%; height: 150px;
+      object-fit: cover;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 999;
+      animation: pulse-wa 2.5s infinite;
+    }
+    @keyframes pulse-wa {
+      0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+    }
+
+    .client-pill {
+      background: #f0f4ff;
+      border: 1px solid #c7d5f0;
+      color: #1F3864;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .section-label {
+      display: inline-block;
+      background: #FFD966;
+      color: #1F3864;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-800">
 
-<!-- NAVBAR -->
+<!-- ══════════════════ NAVBAR ══════════════════ -->
 <nav class="bg-primary sticky top-0 z-50 shadow-lg">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2">
@@ -51,172 +155,384 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero-bg text-white py-20 px-4">
-  <div class="max-w-4xl mx-auto text-center">
-    <p class="text-accent font-semibold text-sm uppercase tracking-widest mb-3">Su Protección, Nuestro Objetivo</p>
-    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-      Seguridad Industrial<br/>de Alta Calidad
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero-bg text-white py-24 px-4">
+  <div class="hero-stripe"></div>
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <div class="section-label mb-4">Florencia · Caquetá · Colombia</div>
+    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-4" style="font-family:'Barlow Condensed',sans-serif; letter-spacing:-0.01em;">
+      ¡SU PROTECCIÓN...<br/>
+      <span class="text-accent">NUESTRO OBJETIVO!</span>
     </h1>
-    <p class="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-      Dotaciones, EPP y señalización vial para todos los sectores industriales de Florencia y el Caquetá. Entrega inmediata.
+    <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto font-medium">
+      Más de <strong class="text-white">20 años</strong> fabricando, comercializando y distribuyendo Elementos de Protección Personal (EPP) para todos los sectores de la región.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="catalogo.html" class="bg-accent text-primary font-bold px-8 py-3 rounded-full hover:bg-yellow-400 transition text-sm">
-        Ver Catálogo
+      <a href="catalogo.html" class="bg-accent text-primary font-bold px-10 py-4 rounded-full hover:bg-yellow-400 transition text-base shadow-lg" style="font-family:'Barlow Condensed',sans-serif; letter-spacing:0.05em; font-size:16px;">
+        VER CATÁLOGO COMPLETO
       </a>
-      <a href="https://wa.me/573106283321?text=%C2%A1Hola%21%20Bienvenido%20a%20UNILABOR%20Dotaciones%20%F0%9F%91%B7%20Somos%20su%20aliado%20en%20seguridad%20industrial%20con%20m%C3%A1s%20de%2020%20a%C3%B1os%20de%20experiencia.%20Estamos%20listos%20para%20asesorarle.%20%C2%BFEn%20qu%C3%A9%20le%20podemos%20ayudar%20hoy%3F" target="_blank" class="border-2 border-white text-white font-bold px-8 py-3 rounded-full hover:bg-white hover:text-primary transition text-sm">
-        Cotizar por WhatsApp
+      <a href="https://wa.me/573106283321?text=%C2%A1Hola%21%20Bienvenido%20a%20UNILABOR%20Dotaciones%20%F0%9F%91%B7%20Somos%20su%20aliado%20en%20seguridad%20industrial%20con%20m%C3%A1s%20de%2020%20a%C3%B1os%20de%20experiencia.%20Estamos%20listos%20para%20asesorarle.%20%C2%BFEn%20qu%C3%A9%20le%20podemos%20ayudar%20hoy%3F" target="_blank"
+        class="border-2 border-white text-white font-bold px-10 py-4 rounded-full hover:bg-white hover:text-primary transition text-base"
+        style="font-family:'Barlow Condensed',sans-serif; letter-spacing:0.05em; font-size:16px;">
+        💬 COTIZAR POR WHATSAPP
       </a>
     </div>
   </div>
 </section>
 
-<!-- POR QUÉ ELEGIRNOS -->
-<section class="py-16 px-4 bg-gray-50">
+<!-- ══════════════════ STATS ══════════════════ -->
+<section class="bg-primary py-10 px-4">
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
+    <div class="stat-box pt-4">
+      <p class="text-4xl font-black text-accent" style="font-family:'Barlow Condensed',sans-serif;">+20</p>
+      <p class="text-sm text-blue-200 mt-1">Años de experiencia</p>
+    </div>
+    <div class="stat-box pt-4">
+      <p class="text-4xl font-black text-accent" style="font-family:'Barlow Condensed',sans-serif;">2</p>
+      <p class="text-sm text-blue-200 mt-1">Locales en Florencia</p>
+    </div>
+    <div class="stat-box pt-4">
+      <p class="text-4xl font-black text-accent" style="font-family:'Barlow Condensed',sans-serif;">100%</p>
+      <p class="text-sm text-blue-200 mt-1">Calidad certificada</p>
+    </div>
+    <div class="stat-box pt-4">
+      <p class="text-4xl font-black text-accent" style="font-family:'Barlow Condensed',sans-serif;">TODO</p>
+      <p class="text-sm text-blue-200 mt-1">En seguridad industrial</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ QUIÉNES SOMOS ══════════════════ -->
+<section class="py-20 px-4 bg-gray-50">
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-2xl font-bold text-center text-primary mb-10">¿Por qué elegirnos?</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div class="card-hover bg-white rounded-2xl p-6 shadow-sm">
-        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3">
-          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Texto -->
+      <div>
+        <div class="section-label">Quiénes Somos</div>
+        <h2 class="text-4xl font-black text-primary mb-5" style="font-family:'Barlow Condensed',sans-serif;">
+          La empresa caqueteña<br/>de seguridad industrial
+        </h2>
+        <p class="text-gray-600 mb-4 leading-relaxed">
+          <strong class="text-primary">UNILABOR DOTACIONES</strong> es una empresa caqueteña con más de 20 años de experiencia en la fabricación, comercialización y distribución de Elementos para la Protección Personal (EPP).
+        </p>
+        <p class="text-gray-600 mb-6 leading-relaxed">
+          Nuestros altos estándares de calidad, avalados por certificaciones de cumplimiento normativo, nos han llevado a crear políticas estratégicas para ofrecer siempre calidad y cumplimiento en todos los elementos. Contamos con <strong class="text-primary">2 locales comerciales en Florencia</strong> y una amplia red de distribución departamental.
+        </p>
+        <!-- Clientes reales -->
+        <p class="text-sm font-bold text-primary mb-3 uppercase tracking-wide">Nuestros clientes:</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="client-pill">Serproaseo</span>
+          <span class="client-pill">Comfaca</span>
+          <span class="client-pill">Hospitales</span>
+          <span class="client-pill">Super Mio</span>
+          <span class="client-pill">Distrienchapes</span>
+          <span class="client-pill">Constructoras</span>
+          <span class="client-pill">Industria Lácteos</span>
+          <span class="client-pill">Servicios Públicos</span>
         </div>
-        <p class="font-bold text-primary text-sm">20 Años</p>
-        <p class="text-xs text-gray-500 mt-1">de trayectoria y confianza</p>
       </div>
-      <div class="card-hover bg-white rounded-2xl p-6 shadow-sm">
-        <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-3">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+      <!-- Imagen representativa -->
+      <div class="relative">
+        <img
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80"
+          alt="Seguridad Industrial UNILABOR"
+          class="rounded-2xl shadow-xl w-full object-cover"
+          style="height:380px;"
+        />
+        <div class="absolute -bottom-4 -left-4 bg-accent text-primary font-black text-xl px-6 py-3 rounded-xl shadow-lg" style="font-family:'Barlow Condensed',sans-serif;">
+          +20 AÑOS<br/><span class="text-sm font-semibold">protegiendo trabajadores</span>
         </div>
-        <p class="font-bold text-primary text-sm">Calidad Certificada</p>
-        <p class="text-xs text-gray-500 mt-1">productos con normas técnicas</p>
-      </div>
-      <div class="card-hover bg-white rounded-2xl p-6 shadow-sm">
-        <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3">
-          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        </div>
-        <p class="font-bold text-primary text-sm">Entrega Inmediata</p>
-        <p class="text-xs text-gray-500 mt-1">stock disponible en Florencia</p>
-      </div>
-      <div class="card-hover bg-white rounded-2xl p-6 shadow-sm">
-        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3">
-          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>
-        </div>
-        <p class="font-bold text-primary text-sm">Asesoría Personalizada</p>
-        <p class="text-xs text-gray-500 mt-1">te ayudamos a elegir</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CATEGORÍAS EPP -->
-<section class="py-16 px-4">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-2xl font-bold text-center text-primary mb-2">Categorías de Productos</h2>
-    <p class="text-center text-gray-500 text-sm mb-10">EPP homologado para todos los sectores</p>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      <!-- Cards categorías -->
-      <a href="catalogo.html?cat=cascos" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">⛑️</div>
-        <p class="font-semibold text-primary text-sm">Cascos</p>
-        <p class="text-xs text-gray-400">Seguridad y confort</p>
+<!-- ══════════════════ CATEGORÍAS ══════════════════ -->
+<section class="py-20 px-4">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="section-label">Línea de productos</div>
+      <h2 class="text-4xl font-black text-primary" style="font-family:'Barlow Condensed',sans-serif;">Categorías de EPP</h2>
+      <p class="text-gray-500 mt-2">Equipos homologados para todos los sectores industriales</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+
+      <a href="catalogo.html?cat=visual" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&q=75"
+          alt="Protección Visual"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Protección Visual</p>
+          <p class="text-xs text-gray-400 mt-1">Gafas, lentes, monogafas</p>
+        </div>
       </a>
-      <a href="catalogo.html?cat=guantes" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">🧤</div>
-        <p class="font-semibold text-primary text-sm">Guantes</p>
-        <p class="text-xs text-gray-400">Anticorte, PU, cuero</p>
+
+      <a href="catalogo.html?cat=facial" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=400&q=75"
+          alt="Protección Facial y Manual"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Protección Facial y Manual</p>
+          <p class="text-xs text-gray-400 mt-1">Caretas, guantes latex, nitrilo</p>
+        </div>
       </a>
-      <a href="catalogo.html?cat=gafas" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">🥽</div>
-        <p class="font-semibold text-primary text-sm">Gafas</p>
-        <p class="text-xs text-gray-400">Oscuras y transparentes</p>
+
+      <a href="catalogo.html?cat=auditiva" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=75"
+          alt="Protección Auditiva"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Protección Auditiva</p>
+          <p class="text-xs text-gray-400 mt-1">Orejeras, tapaoídos espuma</p>
+        </div>
       </a>
-      <a href="catalogo.html?cat=auditiva" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">🔇</div>
-        <p class="font-semibold text-primary text-sm">Protección Auditiva</p>
-        <p class="text-xs text-gray-400">Tapaoídos y orejeras</p>
+
+      <a href="catalogo.html?cat=respiratoria" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1616628188859-7a11abb6fcc9?w=400&q=75"
+          alt="Protección Respiratoria"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Protección Respiratoria</p>
+          <p class="text-xs text-gray-400 mt-1">Respiradores KN95, mascaras</p>
+        </div>
       </a>
-      <a href="catalogo.html?cat=calzado" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">🥾</div>
-        <p class="font-semibold text-primary text-sm">Calzado</p>
-        <p class="text-xs text-gray-400">Botas con puntera</p>
+
+      <a href="catalogo.html?cat=corporal" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75"
+          alt="Dotación Alimentos"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Dotación Alimentos</p>
+          <p class="text-xs text-gray-400 mt-1">Uniformes, gorros, delantales</p>
+        </div>
       </a>
-      <a href="catalogo.html?cat=ropa" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">🦺</div>
-        <p class="font-semibold text-primary text-sm">Ropa de Trabajo</p>
-        <p class="text-xs text-gray-400">Overoles, buzos, pantalones</p>
+
+      <a href="catalogo.html?cat=indigo" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=75"
+          alt="Línea Índigo"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Línea Índigo</p>
+          <p class="text-xs text-gray-400 mt-1">Camisas, pantalones, chaquetas</p>
+        </div>
       </a>
-      <a href="catalogo.html?cat=señalizacion" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">🚧</div>
-        <p class="font-semibold text-primary text-sm">Señalización Vial</p>
-        <p class="text-xs text-gray-400">Señales, paletas, conos</p>
+
+      <a href="catalogo.html?cat=calzado" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=75"
+          alt="Calzado de Seguridad"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Calzado de Seguridad</p>
+          <p class="text-xs text-gray-400 mt-1">Botas, botines con puntera</p>
+        </div>
       </a>
-      <a href="catalogo.html?cat=barreras" class="card-hover bg-white border border-gray-100 rounded-2xl p-5 text-center shadow-sm">
-        <div class="text-3xl mb-2">🔶</div>
-        <p class="font-semibold text-primary text-sm">Barreras y Conos</p>
-        <p class="text-xs text-gray-400">Delineadores y barreras</p>
+
+      <a href="catalogo.html?cat=señalizacion" class="category-card">
+        <img class="category-img"
+          src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=75"
+          alt="Señalización"/>
+        <div class="p-4">
+          <p class="font-bold text-primary text-sm">Señalización</p>
+          <p class="text-xs text-gray-400 mt-1">Señales, extintores, avisos</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PRODUCTOS DESTACADOS ══════════════════ -->
+<section class="py-20 px-4 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="section-label">Productos Destacados</div>
+      <h2 class="text-4xl font-black text-primary" style="font-family:'Barlow Condensed',sans-serif;">Los más solicitados</h2>
+      <p class="text-gray-500 mt-2">Referencias reales disponibles en stock</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+      <!-- Producto 1 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1609220136736-443140cffec6?w=400&q=75"
+          alt="Lente Norton Antirayones Claro"/>
+        <div class="p-4">
+          <span class="badge-ref">Ref 140 MD Safety</span>
+          <p class="font-bold text-primary text-sm mt-2">Lente T/Norton Antirayones Claro</p>
+          <p class="text-xs text-gray-500 mt-1">Protección visual · Anti UV</p>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1606206591513-adbfbdd4f3a3?w=400&q=75"
+          alt="Lente Deportivo Oscuro"/>
+        <div class="p-4">
+          <span class="badge-ref">Ref C-0011 MD</span>
+          <p class="font-bold text-primary text-sm mt-2">Lente Seguridad Deportivo Oscuro</p>
+          <p class="text-xs text-gray-500 mt-1">Exterior · Reduce resplandor</p>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=400&q=75"
+          alt="Guantes Nitrilo"/>
+        <div class="p-4">
+          <span class="badge-ref">Ref 207156 T-L</span>
+          <p class="font-bold text-primary text-sm mt-2">Guantes Nitrilo Sin Látex</p>
+          <p class="text-xs text-gray-500 mt-1">Resistencia a abrasión y corte</p>
+        </div>
+      </div>
+
+      <!-- Producto 4 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=75"
+          alt="Protector Auditivo Copa"/>
+        <div class="p-4">
+          <span class="badge-ref">Ref Samuray 22 Db</span>
+          <p class="font-bold text-primary text-sm mt-2">Protector Auditivo T/Copa</p>
+          <p class="text-xs text-gray-500 mt-1">22 dB · Vicsa</p>
+        </div>
+      </div>
+
+      <!-- Producto 5 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1616628188859-7a11abb6fcc9?w=400&q=75"
+          alt="Respirador KN95"/>
+        <div class="p-4">
+          <span class="badge-ref">KN95 Intell</span>
+          <p class="font-bold text-primary text-sm mt-2">Respirador Plegable KN95</p>
+          <p class="text-xs text-gray-500 mt-1">Descartable · Con válvula</p>
+        </div>
+      </div>
+
+      <!-- Producto 6 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&q=75"
+          alt="Botin Contractor Eco"/>
+        <div class="p-4">
+          <span class="badge-ref">Contractor ECO</span>
+          <p class="font-bold text-primary text-sm mt-2">Botín de Seguridad</p>
+          <p class="text-xs text-gray-500 mt-1">Puntera composite · Suela PU</p>
+        </div>
+      </div>
+
+      <!-- Producto 7 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=75"
+          alt="Uniforme Industria Alimentos"/>
+        <div class="p-4">
+          <span class="badge-ref">Línea Alimentos</span>
+          <p class="font-bold text-primary text-sm mt-2">Uniforme Industria Alimenticia</p>
+          <p class="text-xs text-gray-500 mt-1">Chaqueta chef · Gorro · Delantal</p>
+        </div>
+      </div>
+
+      <!-- Producto 8 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <img class="product-img"
+          src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400&q=75"
+          alt="Traje Lluvia Línea Invierno"/>
+        <div class="p-4">
+          <span class="badge-ref">Línea Invierno</span>
+          <p class="font-bold text-primary text-sm mt-2">Traje Impermeable 2 Piezas</p>
+          <p class="text-xs text-gray-500 mt-1">Con cinta reflectiva · Varios colores</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="catalogo.html" class="inline-block bg-primary text-white font-bold px-10 py-4 rounded-full hover:bg-blue-900 transition"
+        style="font-family:'Barlow Condensed',sans-serif; letter-spacing:0.05em; font-size:16px;">
+        VER TODOS LOS PRODUCTOS →
       </a>
     </div>
   </div>
 </section>
 
-<!-- SECTORES -->
+<!-- ══════════════════ SECTORES ══════════════════ -->
 <section class="py-16 px-4 bg-primary text-white">
   <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-2xl font-bold mb-2">Sectores que Atendemos</h2>
+    <div class="section-label">Cobertura departamental</div>
+    <h2 class="text-4xl font-black mb-2 mt-1" style="font-family:'Barlow Condensed',sans-serif;">Sectores que Atendemos</h2>
     <p class="text-blue-200 text-sm mb-10">Dotamos a los mejores equipos de trabajo de la región</p>
     <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
-      <div class="bg-white/10 rounded-xl py-4 px-2"><div class="text-2xl mb-1">🥛</div><p class="text-xs font-semibold">Lácteos</p></div>
-      <div class="bg-white/10 rounded-xl py-4 px-2"><div class="text-2xl mb-1">🐄</div><p class="text-xs font-semibold">Veterinaria</p></div>
-      <div class="bg-white/10 rounded-xl py-4 px-2"><div class="text-2xl mb-1">⚙️</div><p class="text-xs font-semibold">Ingeniería</p></div>
-      <div class="bg-white/10 rounded-xl py-4 px-2"><div class="text-2xl mb-1">🔩</div><p class="text-xs font-semibold">Metalmecánica</p></div>
-      <div class="bg-white/10 rounded-xl py-4 px-2"><div class="text-2xl mb-1">🏗️</div><p class="text-xs font-semibold">Construcción</p></div>
-      <div class="bg-white/10 rounded-xl py-4 px-2"><div class="text-2xl mb-1">💻</div><p class="text-xs font-semibold">Sistemas</p></div>
+      <div class="bg-white/10 rounded-xl py-5 px-2 hover:bg-white/20 transition"><div class="text-3xl mb-2">🥛</div><p class="text-xs font-bold">Lácteos</p></div>
+      <div class="bg-white/10 rounded-xl py-5 px-2 hover:bg-white/20 transition"><div class="text-3xl mb-2">🐄</div><p class="text-xs font-bold">Veterinaria</p></div>
+      <div class="bg-white/10 rounded-xl py-5 px-2 hover:bg-white/20 transition"><div class="text-3xl mb-2">⚙️</div><p class="text-xs font-bold">Ingeniería</p></div>
+      <div class="bg-white/10 rounded-xl py-5 px-2 hover:bg-white/20 transition"><div class="text-3xl mb-2">🔩</div><p class="text-xs font-bold">Metalmecánica</p></div>
+      <div class="bg-white/10 rounded-xl py-5 px-2 hover:bg-white/20 transition"><div class="text-3xl mb-2">🏗️</div><p class="text-xs font-bold">Construcción</p></div>
+      <div class="bg-white/10 rounded-xl py-5 px-2 hover:bg-white/20 transition"><div class="text-3xl mb-2">🍽️</div><p class="text-xs font-bold">Alimentos</p></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="py-14 px-4 text-center">
-  <h2 class="text-2xl font-bold text-primary mb-3">¿Listo para cotizar?</h2>
-  <p class="text-gray-500 text-sm mb-6">Escríbenos por WhatsApp o explora el catálogo y arma tu pedido.</p>
+<!-- ══════════════════ CTA ══════════════════ -->
+<section class="py-16 px-4 text-center">
+  <div class="section-label mx-auto mb-3" style="display:table;">Contáctenos</div>
+  <h2 class="text-4xl font-black text-primary mb-3" style="font-family:'Barlow Condensed',sans-serif;">¿Listo para cotizar?</h2>
+  <p class="text-gray-500 text-base mb-8 max-w-xl mx-auto">Escríbenos por WhatsApp o explora el catálogo y arma tu pedido. Entrega inmediata en Florencia y despachos a todo el Caquetá.</p>
   <div class="flex flex-col sm:flex-row gap-4 justify-center">
-    <a href="catalogo.html" class="bg-primary text-white font-bold px-8 py-3 rounded-full hover:bg-blue-900 transition text-sm">Ver Catálogo Completo</a>
-    <a href="https://wa.me/573106283321?text=%C2%A1Hola%21%20Bienvenido%20a%20UNILABOR%20Dotaciones%20%F0%9F%91%B7%20Somos%20su%20aliado%20en%20seguridad%20industrial%20con%20m%C3%A1s%20de%2020%20a%C3%B1os%20de%20experiencia.%20Estamos%20listos%20para%20asesorarle.%20%C2%BFEn%20qu%C3%A9%20le%20podemos%20ayudar%20hoy%3F" target="_blank" class="bg-green-500 text-white font-bold px-8 py-3 rounded-full hover:bg-green-600 transition text-sm">💬 WhatsApp</a>
+    <a href="catalogo.html" class="bg-primary text-white font-bold px-10 py-4 rounded-full hover:bg-blue-900 transition"
+      style="font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:0.05em;">
+      VER CATÁLOGO COMPLETO
+    </a>
+    <a href="https://wa.me/573106283321?text=%C2%A1Hola%21%20Bienvenido%20a%20UNILABOR%20Dotaciones%20%F0%9F%91%B7%20Somos%20su%20aliado%20en%20seguridad%20industrial%20con%20m%C3%A1s%20de%2020%20a%C3%B1os%20de%20experiencia.%20Estamos%20listos%20para%20asesorarle.%20%C2%BFEn%20qu%C3%A9%20le%20podemos%20ayudar%20hoy%3F" target="_blank"
+      class="bg-green-500 text-white font-bold px-10 py-4 rounded-full hover:bg-green-600 transition"
+      style="font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:0.05em;">
+      💬 WHATSAPP
+    </a>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════════════════ FOOTER ══════════════════ -->
 <footer class="bg-gray-900 text-gray-300 py-10 px-4">
   <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
     <div>
       <p class="text-white font-bold text-lg mb-2">UNILABOR Dotaciones</p>
-      <p class="text-xs">NIT 40.775.436-9<br/>Responsable de IVA</p>
+      <p class="text-xs leading-relaxed">NIT 40.775.436-9<br/>Responsable de IVA<br/>
+      <span class="text-gray-500 mt-1 block">Todo en Seguridad Industrial</span></p>
     </div>
     <div>
-      <p class="text-white font-semibold mb-2">Contacto</p>
-      <p class="text-xs">📍 Calle 20 # 10-13 Brr La Inmaculada, Florencia Caquetá</p>
-      <p class="text-xs">📞 310 628 3321</p>
+      <p class="text-white font-semibold mb-3">Contacto</p>
+      <p class="text-xs mb-1">📍 Calle 20 # 10-13 Brr La Inmaculada, Florencia Caquetá</p>
+      <p class="text-xs mb-1">📞 310 628 3321</p>
+      <p class="text-xs mb-1">📞 311 442 5165</p>
       <p class="text-xs">✉️ astridasvar@hotmail.com</p>
     </div>
     <div>
-      <p class="text-white font-semibold mb-2">Horario</p>
-      <p class="text-xs">Lunes a Viernes: 8am – 6pm</p>
+      <p class="text-white font-semibold mb-3">Horario de Atención</p>
+      <p class="text-xs mb-1">Lunes a Viernes: 8am – 6pm</p>
       <p class="text-xs">Sábados: 8am – 1pm</p>
     </div>
   </div>
-  <p class="text-center text-xs text-gray-500 mt-8"><div class="flex justify-center gap-4 mb-3">
-<a href="https://www.facebook.com/share/1JefuTETug/" target="_blank" class="text-gray-300 hover:text-blue-400 transition" title="Facebook"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-<a href="https://wa.me/573106283321?text=%C2%A1Hola%21%20Bienvenido%20a%20UNILABOR%20Dotaciones%20%F0%9F%91%B7%20Somos%20su%20aliado%20en%20seguridad%20industrial%20con%20m%C3%A1s%20de%2020%20a%C3%B1os%20de%20experiencia.%20Estamos%20listos%20para%20asesorarle.%20%C2%BFEn%20qu%C3%A9%20le%20podemos%20ayudar%20hoy%3F" target="_blank" class="text-gray-300 hover:text-green-400 transition">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a><a href="https://www.instagram.com/unilabordotaciones_" target="_blank" class="text-gray-300 hover:text-pink-400 transition">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a></div>
-  © 2025 UNILABOR Dotaciones. Todos los derechos reservados.</p>
+  <div class="max-w-5xl mx-auto mt-8 pt-6 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="flex gap-4">
+      <a href="https://www.facebook.com/share/1JefuTETug/" target="_blank" class="text-gray-400 hover:text-blue-400 transition" title="Facebook">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://wa.me/573106283321" target="_blank" class="text-gray-400 hover:text-green-400 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/unilabordotaciones_" target="_blank" class="text-gray-400 hover:text-pink-400 transition">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+    </div>
+    <p class="text-xs text-gray-500">© 2025 UNILABOR Dotaciones. Todos los derechos reservados.</p>
+  </div>
 </footer>
 
 <!-- WhatsApp flotante -->
-<a href="https://wa.me/573106283321?text=%C2%A1Hola%21%20Bienvenido%20a%20UNILABOR%20Dotaciones%20%F0%9F%91%B7%20Somos%20su%20aliado%20en%20seguridad%20industrial%20con%20m%C3%A1s%20de%2020%20a%C3%B1os%20de%20experiencia.%20Estamos%20listos%20para%20asesorarle.%20%C2%BFEn%20qu%C3%A9%20le%20podemos%20ayudar%20hoy%3F" target="_blank" class="whatsapp-float bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-600 transition">
+<a href="https://wa.me/573106283321?text=%C2%A1Hola%21%20Bienvenido%20a%20UNILABOR%20Dotaciones%20%F0%9F%91%B7%20Somos%20su%20aliado%20en%20seguridad%20industrial%20con%20m%C3%A1s%20de%2020%20a%C3%B1os%20de%20experiencia.%20Estamos%20listos%20para%20asesorarle.%20%C2%BFEn%20qu%C3%A9%20le%20podemos%20ayudar%20hoy%3F" target="_blank"
+  class="whatsapp-float bg-green-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-green-600 transition">
   <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
